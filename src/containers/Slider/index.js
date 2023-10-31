@@ -25,7 +25,7 @@ const Slider = () => {
     );
     }         
   };
-
+// Utilisation de useEffect pour lancer la fonction nextCard lorsque le composant est monté 
   useEffect(() => {
     nextCard();    
   });
@@ -55,12 +55,13 @@ const Slider = () => {
               {/* Boucle à travers chaque élément pour la pagination */}
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={`${_.id}`}  // Utilisez _.id                 
+                  key={`${_.title}`}  // Utilisez _.id                 
                   type="radio"
                   name="radio-button"
                   // checked={idx === radioIdx}
                   checked={index === radioIdx}
-                  readOnly
+                  // readOnly
+                  onChange={()=>null}
                 />
               ))}
             </div>

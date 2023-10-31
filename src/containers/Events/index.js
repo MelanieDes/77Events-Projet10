@@ -26,13 +26,13 @@ const EventList = () => {
   //   }
   //   return false;
   // });
-  // Filtrage initial des événements en fonction du type************
+  // Filtrage initial des événements en fonction du type
   const filteredEventsByType = (
     type
       ? data?.events.filter(event => event.type === type)
       : data?.events) || [];
   
-   // Filtrage des événements en fonction de la page actuelle (pagination)*************
+   // Filtrage des événements en fonction de la page actuelle (pagination)
    const filteredEvents = filteredEventsByType.slice(
     (currentPage - 1) * PER_PAGE,
     currentPage * PER_PAGE
