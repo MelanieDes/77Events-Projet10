@@ -83,7 +83,6 @@ describe("When Events is created", () => {
       );
 
       await screen.findByText("Conférence #productCON");
-      // espace enlever après la fonction expect
       expect(screen.queryByText("Forum #productCON")).not.toBeInTheDocument();
     });
   });

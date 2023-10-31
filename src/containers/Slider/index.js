@@ -11,20 +11,32 @@ const Slider = () => {
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   );
   const nextCard = () => {
+    // setTimeout(
+    //   () => setIndex(index < byDateDesc.length ? index + 1 : 0),
+    //   5000
+    // ); 
+
+    // Ajout d'une vérification pour s'assurer que byDateDesc n'est pas undefined
+    if (byDateDesc !== undefined) {
     setTimeout(
-      () => setIndex(index < byDateDesc.length ? index + 1 : 0),
+      // Ajout d'un -1 pour éviter de dépasser la limite de la longueur du tableau
+      () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
       5000
-    );     
+    );
+    }         
   };
+
   useEffect(() => {
-    nextCard();
+    nextCard();    
   });
+
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <>
+        // maitre le key dans le div globale 
+        <div key={event.title}>
           <div
-            key={event.title}
+            
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
             }`}
@@ -40,17 +52,20 @@ const Slider = () => {
           </div>
           <div className="SlideCard__paginationContainer">
             <div className="SlideCard__pagination">
+              {/* Boucle à travers chaque élément pour la pagination */}
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={`${event.id}`}
+                  key={`${_.id}`}  // Utilisez _.id                 
                   type="radio"
                   name="radio-button"
-                  checked={idx === radioIdx}
+                  // checked={idx === radioIdx}
+                  checked={index === radioIdx}
+                  readOnly
                 />
               ))}
             </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );
